@@ -16,14 +16,14 @@ import (
 )
 
 // New returns a new blank tree with the logger configured
-func New(l hclog.Logger, spec SpecTuple) *PkgGraph {
+func New(l hclog.Logger, spec types.SpecTuple) *PkgGraph {
 	x := PkgGraph{
 		l:           l.Named(spec.String()),
 		basePath:    "void-packages",
 		parallelism: 10,
 		PkgsMutex:   new(sync.Mutex),
 		AuxMutex:    new(sync.Mutex),
-		atom: Atom{
+		atom: types.Atom{
 			Pkgs:    make(map[string]*types.Package),
 			Virtual: make(map[string]string),
 			Bad:     make(map[string]string),
